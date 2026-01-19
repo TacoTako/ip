@@ -24,12 +24,13 @@ public class Duke {
     }
 
     private static void sayGoodbye() {
-        String bye =  "As you wish, Your Majesty. Your servant humbly withdraws.hi";
+        String bye =  "As you wish, Your Majesty. Your servant humbly withdraws.";
         System.out.println(formatOutput(bye));
     }
 
     private static String formatOutput(String s) {
         String line = "____________________________________________________________";
-        return line + "\n" + s + "\n" +line;
+        String output = line + "\n" + s + "\n" +line;
+        return output.indent(4);
     }
 }
