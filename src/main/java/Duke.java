@@ -19,12 +19,12 @@ public class Duke {
     }
 
     private static void greet() {
-        String greeting =  "Hello! I'm Conniving Eunuch, the Duplicitous\nWhat can I do for you?";
+        String greeting =  "Your Majesty, the officials are not to be trusted.\nOnly I, Conniving Eunuch, truly cares for your well-being.\nHow may this lowly one assist you?";
         System.out.println(formatOutput(greeting));
     }
 
     private static void sayGoodbye() {
-        String bye =  "Bye. Hope to see you again soon!";
+        String bye =  "As you wish, Your Majesty. Your servant humbly withdraws.hi";
         System.out.println(formatOutput(bye));
     }
 
