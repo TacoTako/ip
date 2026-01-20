@@ -20,7 +20,7 @@ public class Task {
 
     @Override
     public String toString() {
-        String check = (isDone) ? " " : "X";
+        String check = (isDone) ? "X" : " ";
         return "[" + check + "] " + taskDesc;
     }
 }

@@ -1,27 +1,17 @@
 import java.util.Scanner;
 
 public class Duke {
+    public static TaskList taskList = new TaskList();
+
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        TaskList taskList = new TaskList();
         boolean endConversation = false;
         greet();
 
         //while loop for listening to users
         while (!endConversation) {
             String input = s.nextLine();
-            String keyWord = getFirstWord(input);
-            switch (input) {
-                case "bye":
-                    endConversation = true;
-                    break;
-                case "list":
-                    System.out.println(formatOutput(taskList.toString()));
-                    break;
-                default:
-                    taskList.add(input);
-                    System.out.println(formatOutput("added: " + input));
-            }
+            endConversation = !processInput(input);
         }
 
         sayGoodbye();
@@ -46,5 +36,36 @@ public class Duke {
     private static String getFirstWord(String s) {
         String[] words = s.trim().split("\\s+");
         return words[0].toLowerCase();
+    }
+
+    //returns true if continuing conversation, false if ending
+    private static boolean processInput(String input) {
+        String[] content = input.trim().split(" ", 2);
+        String firstWord = content[0];
+        String parameters = (content.length > 1) ? content[1] : "";
+
+        switch (firstWord) {
+            case "bye":
+                return false;
+            case "list":
+                System.out.println(formatOutput(taskList.toString()));
+                break;
+            case "mark":
+                Task taskToMark = taskList.get(Integer.parseInt(parameters));
+                taskToMark.markDone();
+
+                System.out.println(formatOutput("I've marked this task as done: \n" + taskToMark));
+                break;
+            case "unmark":
+                Task taskToUnmark = taskList.get(Integer.parseInt(parameters));
+                taskToUnmark.unmarkDone();
+
+                System.out.println(formatOutput("I've marked this task as done: \n" + taskToUnmark));
+                break;
+            default:
+                taskList.add(input);
+                System.out.println(formatOutput("added: " + input));
+        }
+        return true;
     }
 }
