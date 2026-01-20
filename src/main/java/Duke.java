@@ -40,9 +40,9 @@ public class Duke {
 
     //returns true if continuing conversation, false if ending
     private static boolean processInput(String input) {
-        String[] content = input.trim().split(" ", 2);
-        String firstWord = content[0];
-        String parameters = (content.length > 1) ? content[1] : "";
+        String[] temp = input.trim().split(" ", 2);
+        String firstWord = temp[0];
+        String content = (temp.length > 1) ? temp[1] : "";
 
         switch (firstWord) {
             case "bye":
@@ -51,20 +51,33 @@ public class Duke {
                 System.out.println(formatOutput(taskList.toString()));
                 break;
             case "mark":
-                Task taskToMark = taskList.get(Integer.parseInt(parameters));
+                Task taskToMark = taskList.get(Integer.parseInt(content));
                 taskToMark.markDone();
 
                 System.out.println(formatOutput("I've marked this task as done: \n" + taskToMark));
                 break;
             case "unmark":
-                Task taskToUnmark = taskList.get(Integer.parseInt(parameters));
+                Task taskToUnmark = taskList.get(Integer.parseInt(content));
                 taskToUnmark.unmarkDone();
 
                 System.out.println(formatOutput("I've marked this task as undone: \n" + taskToUnmark));
                 break;
+            case "todo":
+                Task todo = new Todo(content);
+                System.out.println(formatOutput(taskList.add(todo)));
+                break;
+            case "deadline":
+                String[] deadlineParams = content.trim().split("\\s*/by\\s*");
+                Task deadline = new Deadline(deadlineParams[0], deadlineParams[1]);
+                System.out.println(formatOutput(taskList.add(deadline)));
+                break;
+            case "event":
+                String[] eventParams = content.trim().split("\\s*/from\\s*|\\s*/to\\s*");
+                Task event = new Event(eventParams[0], eventParams[1], eventParams[2]);
+                System.out.println(formatOutput(taskList.add(event)));
+                break;
             default:
-                taskList.add(input);
-                System.out.println(formatOutput("added: " + input));
+                System.out.println(formatOutput("I don't know what you mean."));
         }
         return true;
     }

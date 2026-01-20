@@ -23,8 +23,10 @@ public class TaskList {
         return sb.toString();
     }
 
-    public void add(String s) {
-        this.list.add(new Todo(s));
+    public String add(Task task) {
+        this.list.add(task);
+        return "Got it. I've added this task:\n" + task +
+                "\n There are " + list.size() + " tasks in your list now.";
     }
 
     public Task get(int index) {
