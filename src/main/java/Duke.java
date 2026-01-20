@@ -3,15 +3,23 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
+        TaskList taskList = new TaskList();
+        boolean endConversation = false;
         greet();
 
         //while loop for listening to users
-        while (true) {
+        while (!endConversation) {
             String input = s.nextLine();
-            if (input.equals("bye")) {
-                break;
-            } else {
-                System.out.println(formatOutput(input));
+            switch (input) {
+                case "bye":
+                    endConversation = true;
+                    break;
+                case "list":
+                    System.out.println(formatOutput(taskList.toString()));
+                    break;
+                default:
+                    taskList.add(input);
+                    System.out.println(formatOutput("added: " + input));
             }
         }
 
