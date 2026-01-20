@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class TaskList {
-    private final ArrayList<String> list;
+    private final ArrayList<Task> list;
 
     public TaskList() {
         list = new ArrayList<>();
@@ -25,7 +25,7 @@ public class TaskList {
     }
 
     public void add(String s) {
-        this.list.add(s);
+        this.list.add(new Task(s));
     }
 
     public void delete(String s) {

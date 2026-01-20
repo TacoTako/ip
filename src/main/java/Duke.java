@@ -10,6 +10,7 @@ public class Duke {
         //while loop for listening to users
         while (!endConversation) {
             String input = s.nextLine();
+            String keyWord = getFirstWord(input);
             switch (input) {
                 case "bye":
                     endConversation = true;
@@ -40,5 +41,10 @@ public class Duke {
         String line = "____________________________________________________________";
         String output = line + "\n" + s + "\n" +line;
         return output.indent(4);
+    }
+
+    private static String getFirstWord(String s) {
+        String[] words = s.trim().split("\\s+");
+        return words[0].toLowerCase();
     }
 }
