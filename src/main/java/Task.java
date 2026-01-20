@@ -1,9 +1,9 @@
-public class Task {
+public abstract class Task {
     private boolean isDone = false;
     private final String taskDesc;
 
-    public Task(String desc) {
-        this.taskDesc = desc;
+    public Task(String description) {
+        this.taskDesc = description;
     }
 
     public boolean getDone() {

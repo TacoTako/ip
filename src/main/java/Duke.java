@@ -60,7 +60,7 @@ public class Duke {
                 Task taskToUnmark = taskList.get(Integer.parseInt(parameters));
                 taskToUnmark.unmarkDone();
 
-                System.out.println(formatOutput("I've marked this task as done: \n" + taskToUnmark));
+                System.out.println(formatOutput("I've marked this task as undone: \n" + taskToUnmark));
                 break;
             default:
                 taskList.add(input);

@@ -24,7 +24,7 @@ public class TaskList {
     }
 
     public void add(String s) {
-        this.list.add(new Task(s));
+        this.list.add(new Todo(s));
     }
 
     public Task get(int index) {
