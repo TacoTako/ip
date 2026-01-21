@@ -36,7 +36,7 @@ public class Duke {
     //returns true if continuing conversation, false if ending
     private static boolean processInput(String input) {
         String[] temp = input.trim().split(" ", 2);
-        String keyword = temp[0];
+        String keyword = temp[0].toLowerCase();
         String content = (temp.length > 1) ? temp[1] : "";
 
         try {

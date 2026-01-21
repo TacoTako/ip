@@ -1,0 +1,29 @@
+a
+todo abc
+list
+deadline test deadline /by 9pm
+list
+event test event /from Mon 2pm /to 4pm
+list
+TOdO efg
+LIST
+mark 1
+maRk 2
+mark 3
+list
+unmark 3
+unmark 4
+list
+todo
+deadline
+deadline no deadline
+event no to time /from Mon 2pm
+mark a
+mark -99
+unmark a
+unmark 100
+delete a
+delete 0
+delete 4
+list
+bye
