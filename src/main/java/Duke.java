@@ -33,52 +33,104 @@ public class Duke {
         return output.indent(4);
     }
 
-    private static String getFirstWord(String s) {
-        String[] words = s.trim().split("\\s+");
-        return words[0].toLowerCase();
-    }
-
     //returns true if continuing conversation, false if ending
     private static boolean processInput(String input) {
         String[] temp = input.trim().split(" ", 2);
-        String firstWord = temp[0];
+        String keyword = temp[0];
         String content = (temp.length > 1) ? temp[1] : "";
 
-        switch (firstWord) {
-            case "bye":
-                return false;
-            case "list":
-                System.out.println(formatOutput(taskList.toString()));
-                break;
-            case "mark":
-                Task taskToMark = taskList.get(Integer.parseInt(content));
-                taskToMark.markDone();
-
-                System.out.println(formatOutput("I've marked this task as done: \n" + taskToMark));
-                break;
-            case "unmark":
-                Task taskToUnmark = taskList.get(Integer.parseInt(content));
-                taskToUnmark.unmarkDone();
-
-                System.out.println(formatOutput("I've marked this task as undone: \n" + taskToUnmark));
-                break;
-            case "todo":
-                Task todo = new Todo(content);
-                System.out.println(formatOutput(taskList.add(todo)));
-                break;
-            case "deadline":
-                String[] deadlineParams = content.trim().split("\\s*/by\\s*");
-                Task deadline = new Deadline(deadlineParams[0], deadlineParams[1]);
-                System.out.println(formatOutput(taskList.add(deadline)));
-                break;
-            case "event":
-                String[] eventParams = content.trim().split("\\s*/from\\s*|\\s*/to\\s*");
-                Task event = new Event(eventParams[0], eventParams[1], eventParams[2]);
-                System.out.println(formatOutput(taskList.add(event)));
-                break;
-            default:
-                System.out.println(formatOutput("I don't know what you mean."));
+        try {
+            switch (keyword) {
+                case "":
+                    System.out.println(formatOutput("Say something"));
+                    break;
+                case "bye":
+                    return false;
+                case "list":
+                    System.out.println(formatOutput(taskList.toString()));
+                    break;
+                case "mark":
+                    parseMark(content);
+                    break;
+                case "unmark":
+                    parseUnmark(content);
+                    break;
+                case "todo":
+                    parseTodo(content);
+                    break;
+                case "deadline":
+                    parseDeadline(content);
+                    break;
+                case "event":
+                    parseEvent(content);
+                    break;
+                default:
+                    System.out.println(formatOutput("I don't know what you mean."));
+            }
+        } catch (ConnivingException e) {
+            System.out.println(formatOutput(e.getMessage()));
         }
+
         return true;
     }
+
+    private static void parseMark(String content) throws ConnivingException {
+        try {
+            Task task = taskList.get(Integer.parseInt(content));
+            task.markDone();
+            System.out.println(formatOutput("I've marked this task as done: \n" + task));
+        } catch (NumberFormatException e) {
+            throw new ConnivingException("Input a number after the \"mark\" keyword.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConnivingException("Item does not exist in list!");
+        }
+    }
+
+    private static void parseUnmark(String content) throws ConnivingException {
+        try {
+            Task task = taskList.get(Integer.parseInt(content));
+            task.unmarkDone();
+            System.out.println(formatOutput("I've unmarked this task as done: \n" + task));
+        } catch (NumberFormatException e) {
+            throw new ConnivingException("Input a number after the \"unmark\" keyword.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConnivingException("Item does not exist in list!");
+        }
+    }
+
+    private static void parseTodo(String content) throws ConnivingException {
+        if (content.isEmpty()) {
+            throw new ConnivingException("Must have Task description after todo keyword");
+        }
+        Task todo = new Todo(content);
+        System.out.println(formatOutput(taskList.add(todo)));
+    }
+
+    private static void parseDeadline(String content) throws ConnivingException {
+        if (content.isEmpty()) {
+            throw new ConnivingException("Must have Task description after deadline keyword");
+        }
+        try {
+            String[] deadlineParams = content.trim().split("\\s*/by\\s*");
+            Task deadline = new Deadline(deadlineParams[0], deadlineParams[1]);
+            System.out.println(formatOutput(taskList.add(deadline)));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ConnivingException("Incorrect syntax");
+        }
+    }
+
+    private static void parseEvent(String content) throws ConnivingException {
+        if (content.isEmpty()) {
+            throw new ConnivingException("Must have Task description after event keyword");
+        }
+
+        try{
+            String[] eventParams = content.trim().split("\\s*/from\\s*|\\s*/to\\s*");
+            Task event = new Event(eventParams[0], eventParams[1], eventParams[2]);
+            System.out.println(formatOutput(taskList.add(event)));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ConnivingException("Incorrect syntax");
+        }
+    }
+
 }
