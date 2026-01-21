@@ -64,6 +64,9 @@ public class Duke {
                 case "event":
                     parseEvent(content);
                     break;
+                case "delete":
+                    parseDelete(content);
+                    break;
                 default:
                     System.out.println(formatOutput("I don't know what you mean."));
             }
@@ -81,8 +84,6 @@ public class Duke {
             System.out.println(formatOutput("I've marked this task as done: \n" + task));
         } catch (NumberFormatException e) {
             throw new ConnivingException("Input a number after the \"mark\" keyword.");
-        } catch (IndexOutOfBoundsException e) {
-            throw new ConnivingException("Item does not exist in list!");
         }
     }
 
@@ -93,8 +94,15 @@ public class Duke {
             System.out.println(formatOutput("I've unmarked this task as done: \n" + task));
         } catch (NumberFormatException e) {
             throw new ConnivingException("Input a number after the \"unmark\" keyword.");
-        } catch (IndexOutOfBoundsException e) {
-            throw new ConnivingException("Item does not exist in list!");
+        }
+    }
+
+    private static void parseDelete(String content) throws ConnivingException {
+        try {
+            String output = taskList.verboseDelete(Integer.parseInt(content));
+            System.out.println(formatOutput(output));
+        } catch (NumberFormatException e) {
+            throw new ConnivingException("Input a number after the \"unmark\" keyword.");
         }
     }
 

@@ -26,14 +26,29 @@ public class TaskList {
     public String add(Task task) {
         this.list.add(task);
         return "Got it. I've added this task:\n" + task +
-                "\n There are " + list.size() + " tasks in your list now.";
+                "\nThere are " + list.size() + " tasks in your list now.";
     }
 
-    public Task get(int index) {
-        return this.list.get(index - 1);
+    public Task get(int index) throws ConnivingException {
+        try {
+            return this.list.get(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConnivingException("Item does not exist in list!");
+        }
     }
 
-    public void delete(String s) {
+    public void delete(int index) {
+        try {
+            this.list.remove(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConnivingException("Item does not exist in list!");
+        }
+    }
 
+    public String verboseDelete(int index) throws ConnivingException {
+        Task task = get(index);
+        delete(index);
+        return "Got it. I've deleted this task:\n" + task +
+                "\nThere are " + list.size() + " tasks in your list now.";
     }
 }
