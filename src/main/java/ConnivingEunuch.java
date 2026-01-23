@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Duke {
+public class ConnivingEunuch {
     public static TaskList taskList = new TaskList();
 
     public static void main(String[] args) {
@@ -18,7 +18,9 @@ public class Duke {
     }
 
     private static void greet() {
-        String greeting =  "Your Majesty, the officials are not to be trusted.\nOnly I, Conniving Eunuch, truly cares for your well-being.\nHow may this lowly one assist you?";
+        String greeting =  "Your Majesty, the officials are not to be trusted.\n" +
+                "Only I, Conniving Eunuch, truly cares for your well-being.\n" +
+                        "How may this lowly one assist you?";
         System.out.println(formatOutput(greeting));
     }
 
@@ -42,7 +44,7 @@ public class Duke {
         try {
             switch (keyword) {
                 case "":
-                    System.out.println(formatOutput("Say something"));
+                    System.out.println(formatOutput("I must have not caught that, Your Highness."));
                     break;
                 case "bye":
                     return false;
@@ -68,7 +70,7 @@ public class Duke {
                     parseDelete(content);
                     break;
                 default:
-                    System.out.println(formatOutput("I don't know what you mean."));
+                    System.out.println(formatOutput("Your foolish servant does not understand."));
             }
         } catch (ConnivingException e) {
             System.out.println(formatOutput(e.getMessage()));
