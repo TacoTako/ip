@@ -1,3 +1,5 @@
+package eunuch.task;
+
 public abstract class Task {
     protected boolean isDone = false;
     protected final String taskDesc;

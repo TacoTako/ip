@@ -1,4 +1,4 @@
-
+package eunuch.ui;
 
 public class Ui {
     public Ui () {

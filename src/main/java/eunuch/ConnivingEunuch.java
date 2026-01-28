@@ -1,10 +1,20 @@
+package eunuch;
+
+import eunuch.storage.Storage;
+import eunuch.task.Deadline;
+import eunuch.task.Event;
+import eunuch.task.Task;
+import eunuch.task.TaskList;
+import eunuch.task.Todo;
+import eunuch.ui.Ui;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class ConnivingEunuch {
     private static TaskList taskList = new TaskList();
-    private static Storage storage = new Storage("data/eunuch.txt");
-    private static Ui ui = new Ui();
+    private static final Storage storage = new Storage("data/eunuch.txt");
+    private static final Ui ui = new Ui();
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);

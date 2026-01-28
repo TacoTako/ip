@@ -1,3 +1,7 @@
+package eunuch.task;
+
+import eunuch.ConnivingException;
+
 import java.util.ArrayList;
 
 /**
