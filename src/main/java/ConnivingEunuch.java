@@ -43,34 +43,34 @@ public class ConnivingEunuch {
 
         try {
             switch (keyword) {
-                case "":
-                    System.out.println(formatOutput("I must have not caught that, Your Highness."));
-                    break;
-                case "bye":
-                    return false;
-                case "list":
-                    System.out.println(formatOutput(taskList.toString()));
-                    break;
-                case "mark":
-                    parseMark(content);
-                    break;
-                case "unmark":
-                    parseUnmark(content);
-                    break;
-                case "todo":
-                    parseTodo(content);
-                    break;
-                case "deadline":
-                    parseDeadline(content);
-                    break;
-                case "event":
-                    parseEvent(content);
-                    break;
-                case "delete":
-                    parseDelete(content);
-                    break;
-                default:
-                    System.out.println(formatOutput("Your foolish servant does not understand."));
+            case "":
+                System.out.println(formatOutput("I must have not caught that, Your Highness."));
+                break;
+            case "bye":
+                return false;
+            case "list":
+                System.out.println(formatOutput(taskList.toString()));
+                break;
+            case "mark":
+                parseMark(content);
+                break;
+            case "unmark":
+                parseUnmark(content);
+                break;
+            case "todo":
+                parseTodo(content);
+                break;
+            case "deadline":
+                parseDeadline(content);
+                break;
+            case "event":
+                parseEvent(content);
+                break;
+            case "delete":
+                parseDelete(content);
+                break;
+            default:
+                System.out.println(formatOutput("Your foolish servant does not understand."));
             }
         } catch (ConnivingException e) {
             System.out.println(formatOutput(e.getMessage()));
