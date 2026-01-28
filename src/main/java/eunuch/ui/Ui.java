@@ -1,8 +1,22 @@
 package eunuch.ui;
 
+import java.io.IOException;
+
 public class Ui {
     public Ui () {
 
+    }
+
+    public void greet() {
+        String greeting =  "Your Majesty, the officials are not to be trusted.\n" +
+                "Only I, Conniving Eunuch, truly cares for your well-being.\n" +
+                "How may this lowly one assist you?";
+        displayText(greeting);
+    }
+
+    public void sayGoodbye() {
+        String bye =  "As you wish, Your Majesty. Your servant humbly withdraws.";
+        displayText(bye);
     }
 
     public void displayText(String s) {

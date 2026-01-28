@@ -8,7 +8,7 @@ public abstract class Task {
         this.taskDesc = description;
     }
 
-    public boolean getDone() {
+    public boolean isDone() {
         return isDone;
     }
 

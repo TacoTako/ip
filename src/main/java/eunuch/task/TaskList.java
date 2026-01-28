@@ -49,10 +49,8 @@ public class TaskList {
      * @param task Task to be added to the list
      * @return Success message to be printed after adding Task
      */
-    public String add(Task task) {
+    public void add(Task task) {
         this.list.add(task);
-        return "Got it. I've added this task:\n" + task +
-                "\nThere are " + list.size() + " tasks in your list now.";
     }
 
     /**
@@ -84,20 +82,6 @@ public class TaskList {
         }
     }
 
-    /**
-     * Deletes the task in the list with the index specified
-     * and return the confirmation message afterwards
-     * @param index index of item to get (starts from 1)
-     * @return the string of confirmation message
-     * @throws ConnivingException if the index of the item deos not exist
-     */
-    public String verboseDelete(int index) throws ConnivingException {
-        Task task = get(index);
-        delete(index);
-        return "Got it. I've deleted this task:\n" + task +
-                "\nThere are " + list.size() + " tasks in your list now.";
-    }
-
     public String toData() {
         StringBuilder data = new StringBuilder();
         for (Task task : list) {
@@ -118,6 +102,7 @@ public class TaskList {
                 break;
             case "D":
                 taskToAdd = new Deadline(params[1], params[3]);
+                break;
             case "E":
                 taskToAdd = new Event(params[1], params[3], params[4]);
                 break;
