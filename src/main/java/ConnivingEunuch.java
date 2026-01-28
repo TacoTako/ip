@@ -1,11 +1,14 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConnivingEunuch {
     public static TaskList taskList = new TaskList();
+    public static Storage storage = new Storage("data/eunuch.txt");
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         boolean endConversation = false;
+
         greet();
 
         //while loop for listening to users
@@ -18,6 +21,7 @@ public class ConnivingEunuch {
     }
 
     private static void greet() {
+        taskList = storage.loadListFromFile();
         String greeting =  "Your Majesty, the officials are not to be trusted.\n" +
                 "Only I, Conniving Eunuch, truly cares for your well-being.\n" +
                         "How may this lowly one assist you?";
@@ -25,6 +29,11 @@ public class ConnivingEunuch {
     }
 
     private static void sayGoodbye() {
+        try{
+            storage.writeListToFile(taskList);
+        } catch (IOException e) {
+            System.out.println(formatOutput("Error in saving list"));
+        }
         String bye =  "As you wish, Your Majesty. Your servant humbly withdraws.";
         System.out.println(formatOutput(bye));
     }

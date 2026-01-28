@@ -2,9 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
@@ -25,7 +23,7 @@ public class Storage {
     }
 
 
-    private TaskList loadListFromFile() {
+    public TaskList loadListFromFile() {
         ArrayList<String> lines = new ArrayList<>();
         try {
             Scanner s = new Scanner(this.file);
@@ -40,7 +38,7 @@ public class Storage {
         }
     }
 
-    private void writeListToFile(TaskList list) throws IOException {
+    public void writeListToFile(TaskList list) throws IOException {
         FileWriter fw = new FileWriter(file.getPath());
         fw.write(list.toData());
         fw.close();
