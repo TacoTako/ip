@@ -1,22 +1,33 @@
 package eunuch.task;
 
+import eunuch.DateParser;
+
+import java.time.temporal.Temporal;
+
 public class Deadline extends Task {
 
-    protected String by;
+    protected Temporal by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, Temporal by) {
         super(description);
         this.by = by;
     }
 
+    public Deadline(String description, String by) {
+        super(description);
+        this.by = DateParser.parse(by);
+    }
+
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " +
+                DateParser.dateToString(by) + ")";
     }
 
     @Override
     public String toData() {
-        return "D " + this.taskDesc + " " + isDone + " " + by;
+        return "D " + this.taskDesc + " " + isDone + " " +
+                DateParser.dateToParsableString(by);
     }
 
 
