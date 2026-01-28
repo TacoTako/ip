@@ -1,3 +1,5 @@
+package eunuch.task;
+
 public abstract class Task {
     protected boolean isDone = false;
     protected final String taskDesc;
@@ -6,7 +8,7 @@ public abstract class Task {
         this.taskDesc = description;
     }
 
-    public boolean getDone() {
+    public boolean isDone() {
         return isDone;
     }
 
