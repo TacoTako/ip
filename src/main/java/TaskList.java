@@ -1,10 +1,18 @@
 import java.util.ArrayList;
 
+/**
+ * This class represents a list of tasks to be used by the chatbot
+ */
 public class TaskList {
     private final ArrayList<Task> list;
 
     public TaskList() {
         list = new ArrayList<>();
+    }
+
+    public TaskList(ArrayList<String> data) {
+        list = new ArrayList<>();
+        loadListFromData(data);
     }
 
     @Override
@@ -23,12 +31,33 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Returns size of list
+     * @return number of tasks in the list
+     */
+    public int size() {
+        return list.size();
+    }
+
+    /**
+     * Adds a task to the list from the back
+     *
+     * @param task Task to be added to the list
+     * @return Success message to be printed after adding Task
+     */
     public String add(Task task) {
         this.list.add(task);
         return "Got it. I've added this task:\n" + task +
                 "\nThere are " + list.size() + " tasks in your list now.";
     }
 
+    /**
+     * Returns the task in the list with the index specified
+     *
+     * @param index index of item to get (starts from 1)
+     * @return the Task specified
+     * @throws ConnivingException if the index of the item deos not exist
+     */
     public Task get(int index) throws ConnivingException {
         try {
             return this.list.get(index - 1);
@@ -37,7 +66,13 @@ public class TaskList {
         }
     }
 
-    public void delete(int index) {
+    /**
+     * Deletes the task in the list with the index specified
+     *
+     * @param index index of item to get (starts from 1)
+     * @throws ConnivingException if the index of the item deos not exist
+     */
+    public void delete(int index) throws ConnivingException {
         try {
             this.list.remove(index - 1);
         } catch (IndexOutOfBoundsException e) {
@@ -45,10 +80,49 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes the task in the list with the index specified
+     * and return the confirmation message afterwards
+     * @param index index of item to get (starts from 1)
+     * @return the string of confirmation message
+     * @throws ConnivingException if the index of the item deos not exist
+     */
     public String verboseDelete(int index) throws ConnivingException {
         Task task = get(index);
         delete(index);
         return "Got it. I've deleted this task:\n" + task +
                 "\nThere are " + list.size() + " tasks in your list now.";
+    }
+
+    public String toData() {
+        StringBuilder data = new StringBuilder();
+        for (Task task : list) {
+            data.append(task.toData() + "\n");
+        }
+        return data.toString();
+    }
+
+    private void loadListFromData(ArrayList<String> lines) {
+        for (String line : lines) {
+            String[] params = line.split(" ");
+            boolean isMarkedDone = Boolean.parseBoolean(params[2]);
+
+            Task taskToAdd;
+            switch (params[0]) {
+            case "T":
+                taskToAdd = new Todo(params[1]);
+                break;
+            case "D":
+                taskToAdd = new Deadline(params[1], params[3]);
+            case "E":
+                taskToAdd = new Event(params[1], params[3], params[4]);
+                break;
+            default:
+                taskToAdd = new Todo("");
+            }
+
+            taskToAdd.mark(isMarkedDone);
+            add(taskToAdd);
+        }
     }
 }

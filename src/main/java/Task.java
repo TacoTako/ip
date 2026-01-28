@@ -1,6 +1,6 @@
 public abstract class Task {
-    private boolean isDone = false;
-    private final String taskDesc;
+    protected boolean isDone = false;
+    protected final String taskDesc;
 
     public Task(String description) {
         this.taskDesc = description;
@@ -8,6 +8,10 @@ public abstract class Task {
 
     public boolean getDone() {
         return isDone;
+    }
+
+    public void mark(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public void markDone() {
@@ -23,4 +27,6 @@ public abstract class Task {
         String check = (isDone) ? "X" : " ";
         return "[" + check + "] " + taskDesc;
     }
+
+    public abstract String toData();
 }
