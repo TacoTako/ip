@@ -1,5 +1,7 @@
-package eunuch;
+package eunuch.parser;
 
+import eunuch.ConnivingException;
+import eunuch.command.*;
 import eunuch.task.Deadline;
 import eunuch.task.Event;
 import eunuch.task.Task;

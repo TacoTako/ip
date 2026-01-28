@@ -1,5 +1,7 @@
-package eunuch;
+package eunuch.parser;
 
+
+import eunuch.ConnivingException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +28,7 @@ public class DateParser {
             DateTimeFormatter.ofPattern("dd/MM/yyyy")
     );
 
-    public static Temporal parse(String input) throws ConnivingException{
+    public static Temporal parse(String input) throws ConnivingException {
         input = input.trim();
 
 

@@ -1,19 +1,17 @@
-package eunuch;
+package eunuch.command;
 
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
 import eunuch.ui.Ui;
 
-public class PrintCommand extends Command {
-    private final String msg;
+public class ListCommand extends Command {
 
-    public PrintCommand(String msg) {
+    public ListCommand() {
         super(false);
-        this.msg = msg;
     }
 
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.displayText(msg);
+        ui.displayText(taskList.toString());
     }
 }

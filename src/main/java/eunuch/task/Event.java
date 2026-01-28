@@ -1,6 +1,6 @@
 package eunuch.task;
 
-import eunuch.DateParser;
+import eunuch.parser.DateParser;
 
 import java.time.temporal.Temporal;
 

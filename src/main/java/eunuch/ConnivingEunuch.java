@@ -1,10 +1,12 @@
 package eunuch;
 
+import eunuch.command.Command;
+import eunuch.command.PrintCommand;
+import eunuch.parser.Parser;
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
 import eunuch.ui.Ui;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class ConnivingEunuch {
@@ -24,7 +26,13 @@ public class ConnivingEunuch {
         while (!endConversation) {
             String input = s.nextLine();
             Command command = Parser.parse(input);
-            command.execute(taskList, storage, ui);
+
+            try{
+                command.execute(taskList, storage, ui);
+            } catch (ConnivingException e) {
+                new PrintCommand(e.getMessage()).execute(taskList, storage, ui);
+            }
+
             endConversation = command.isExit();
         }
 

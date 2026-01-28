@@ -1,4 +1,4 @@
-package eunuch;
+package eunuch.command;
 
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
@@ -6,7 +6,7 @@ import eunuch.ui.Ui;
 
 import java.io.IOException;
 
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
     public ExitCommand() {
         super(true);
     }

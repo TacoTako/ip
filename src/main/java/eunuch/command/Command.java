@@ -1,4 +1,4 @@
-package eunuch;
+package eunuch.command;
 
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
