@@ -2,8 +2,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ConnivingEunuch {
-    public static TaskList taskList = new TaskList();
-    public static Storage storage = new Storage("data/eunuch.txt");
+    private static TaskList taskList = new TaskList();
+    private static Storage storage = new Storage("data/eunuch.txt");
+    private static Ui ui = new Ui();
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
@@ -25,23 +26,17 @@ public class ConnivingEunuch {
         String greeting =  "Your Majesty, the officials are not to be trusted.\n" +
                 "Only I, Conniving Eunuch, truly cares for your well-being.\n" +
                         "How may this lowly one assist you?";
-        System.out.println(formatOutput(greeting));
+        ui.displayText(greeting);
     }
 
     private static void sayGoodbye() {
         try{
             storage.writeListToFile(taskList);
         } catch (IOException e) {
-            System.out.println(formatOutput("Error in saving list"));
+            ui.displayText("Error in saving list");
         }
         String bye =  "As you wish, Your Majesty. Your servant humbly withdraws.";
-        System.out.println(formatOutput(bye));
-    }
-
-    private static String formatOutput(String s) {
-        String line = "____________________________________________________________";
-        String output = line + "\n" + s + "\n" +line;
-        return output.indent(4);
+        ui.displayText(bye);
     }
 
     //returns true if continuing conversation, false if ending
@@ -53,12 +48,12 @@ public class ConnivingEunuch {
         try {
             switch (keyword) {
             case "":
-                System.out.println(formatOutput("I must have not caught that, Your Highness."));
+                ui.displayText("I must have not caught that, Your Highness.");
                 break;
             case "bye":
                 return false;
             case "list":
-                System.out.println(formatOutput(taskList.toString()));
+                ui.displayText(taskList.toString());
                 break;
             case "mark":
                 parseMark(content);
@@ -79,10 +74,10 @@ public class ConnivingEunuch {
                 parseDelete(content);
                 break;
             default:
-                System.out.println(formatOutput("Your foolish servant does not understand."));
+                ui.displayText("Your foolish servant does not understand.");
             }
         } catch (ConnivingException e) {
-            System.out.println(formatOutput(e.getMessage()));
+            ui.displayText(e.getMessage());
         }
 
         return true;
@@ -92,7 +87,7 @@ public class ConnivingEunuch {
         try {
             Task task = taskList.get(Integer.parseInt(content));
             task.markDone();
-            System.out.println(formatOutput("I've marked this task as done: \n" + task));
+            ui.displayText("I've marked this task as done: \n" + task);
         } catch (NumberFormatException e) {
             throw new ConnivingException("Input a number after the \"mark\" keyword.");
         }
@@ -102,7 +97,7 @@ public class ConnivingEunuch {
         try {
             Task task = taskList.get(Integer.parseInt(content));
             task.unmarkDone();
-            System.out.println(formatOutput("I've unmarked this task as done: \n" + task));
+            ui.displayText("I've unmarked this task as done: \n" + task);
         } catch (NumberFormatException e) {
             throw new ConnivingException("Input a number after the \"unmark\" keyword.");
         }
@@ -111,7 +106,7 @@ public class ConnivingEunuch {
     private static void parseDelete(String content) throws ConnivingException {
         try {
             String output = taskList.verboseDelete(Integer.parseInt(content));
-            System.out.println(formatOutput(output));
+            ui.displayText(output);
         } catch (NumberFormatException e) {
             throw new ConnivingException("Input a number after the \"unmark\" keyword.");
         }
@@ -122,7 +117,7 @@ public class ConnivingEunuch {
             throw new ConnivingException("Must have Task description after todo keyword");
         }
         Task todo = new Todo(content);
-        System.out.println(formatOutput(taskList.add(todo)));
+        ui.displayText(taskList.add(todo));
     }
 
     private static void parseDeadline(String content) throws ConnivingException {
@@ -132,7 +127,7 @@ public class ConnivingEunuch {
         try {
             String[] deadlineParams = content.trim().split("\\s*/by\\s*");
             Task deadline = new Deadline(deadlineParams[0], deadlineParams[1]);
-            System.out.println(formatOutput(taskList.add(deadline)));
+            ui.displayText(taskList.add(deadline));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ConnivingException("Incorrect syntax");
         }
@@ -146,7 +141,7 @@ public class ConnivingEunuch {
         try{
             String[] eventParams = content.trim().split("\\s*/from\\s*|\\s*/to\\s*");
             Task event = new Event(eventParams[0], eventParams[1], eventParams[2]);
-            System.out.println(formatOutput(taskList.add(event)));
+            ui.displayText(taskList.add(event));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ConnivingException("Incorrect syntax");
         }
