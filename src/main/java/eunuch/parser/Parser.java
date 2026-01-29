@@ -3,13 +3,7 @@ package eunuch.parser;
 import java.time.temporal.Temporal;
 
 import eunuch.ConnivingException;
-import eunuch.command.AddCommand;
-import eunuch.command.Command;
-import eunuch.command.DeleteCommand;
-import eunuch.command.ExitCommand;
-import eunuch.command.ListCommand;
-import eunuch.command.MarkCommand;
-import eunuch.command.PrintCommand;
+import eunuch.command.*;
 import eunuch.task.Deadline;
 import eunuch.task.Event;
 import eunuch.task.Task;
@@ -40,11 +34,19 @@ public class Parser {
             case "deadline" -> parseDeadline(content);
             case "event" -> parseEvent(content);
             case "delete" -> parseDelete(content);
+            case "find" -> parseFind(content);
             default -> new PrintCommand("Your foolish servant does not understand.");
             };
         } catch (ConnivingException e) {
             return new PrintCommand(e.getMessage());
         }
+    }
+
+    private static Command parseFind(String content) {
+        if (content.isEmpty()) {
+            throw new ConnivingException("What would you like to search for my lord?");
+        }
+        return new SearchCommand(content, null);
     }
 
     private static Command parseMark(String content) throws ConnivingException {

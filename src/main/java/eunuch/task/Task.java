@@ -27,6 +27,15 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * Returns if the task has a description that contains a string
+     * @param toFind string sequence to check
+     * @return if the task has a description that contains the input
+     */
+    public boolean contains(String toFind) {
+        return taskDesc.toLowerCase().contains(toFind.toLowerCase());
+    }
+
     @Override
     public String toString() {
         String check = (isDone) ? "X" : " ";
