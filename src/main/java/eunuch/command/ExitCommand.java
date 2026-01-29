@@ -6,6 +6,9 @@ import eunuch.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents a command that will break the external while loop and exit the program
+ */
 public class ExitCommand extends Command {
     public ExitCommand() {
         super(true);
