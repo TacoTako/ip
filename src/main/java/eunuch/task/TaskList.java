@@ -23,7 +23,7 @@ public class TaskList {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         if (list.isEmpty()) {
-            return "";
+            return "There are no tasks in your list";
         }
 
         for (int i = 0; i < list.size(); i++) {
@@ -66,6 +66,33 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new ConnivingException("Item does not exist in list!");
         }
+    }
+
+    /**
+     * Returns a string of only the tasks that contain the input string
+     * @param toFind string to match tasks with
+     * @return a number list of matching tasks in string form
+     */
+    public String filterList(String toFind) {
+        StringBuilder sb = new StringBuilder();
+        if (list.isEmpty()) {
+            return "There are no tasks in your list";
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            Task task = list.get(i);
+            if (task.contains(toFind)) {
+                sb.append(i + 1).append(". ").append(list.get(i)).append("\n");
+            }
+        }
+
+        if (sb.isEmpty()) {
+            return "There are no matching tasks in your list";
+        }
+
+        //remove trailing newline
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     /**
