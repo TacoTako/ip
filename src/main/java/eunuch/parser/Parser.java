@@ -15,7 +15,15 @@ import eunuch.task.Event;
 import eunuch.task.Task;
 import eunuch.task.Todo;
 
+/**
+ * Represents a parser that can read user commands to return Command object representations
+ */
 public class Parser {
+    /**
+     * Parses a user input to get the keywords to determine behaviour
+     * @param input String input from user keyboard
+     * @return a Command that represents the user's input
+     */
     public static Command parse(String input) {
         String[] temp = input.trim().split(" ", 2);
         String keyword = temp[0].toLowerCase();

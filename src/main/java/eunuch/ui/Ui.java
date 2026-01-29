@@ -1,10 +1,13 @@
 package eunuch.ui;
 
+/**
+ * Represent the interface that will communicat the action of the code to the user
+ */
 public class Ui {
-    public Ui() {
 
-    }
-
+    /**
+     * Prints a greeting to the user, called on startup
+     */
     public void greet() {
         String greeting = "Your Majesty, the officials are not to be trusted.\n"
                 + "Only I, Conniving Eunuch, truly cares for your well-being.\n"
@@ -12,11 +15,18 @@ public class Ui {
         displayText(greeting);
     }
 
+    /**
+     * Prints the exit message to the user
+     */
     public void sayGoodbye() {
         String bye = "As you wish, Your Majesty. Your servant humbly withdraws.";
         displayText(bye);
     }
 
+    /**
+     * Prints the message to the user after formatting it
+     * @param s message to display
+     */
     public void displayText(String s) {
         System.out.println(formatOutput(s));
     }
