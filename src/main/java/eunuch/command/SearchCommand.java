@@ -27,6 +27,8 @@ public class SearchCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.displayText(taskList.toString());
+        String results = taskList.filterList(searchPhrase);
+        ui.displayText("Here are the matching tasks in your list:\n"
+                + results);
     }
 }
