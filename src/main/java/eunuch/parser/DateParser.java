@@ -1,7 +1,5 @@
 package eunuch.parser;
 
-import eunuch.ConnivingException;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +7,8 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Locale;
+
+import eunuch.ConnivingException;
 
 public class DateParser {
 

@@ -1,8 +1,8 @@
 package eunuch.task;
 
-import eunuch.parser.DateParser;
-
 import java.time.temporal.Temporal;
+
+import eunuch.parser.DateParser;
 
 public class Event extends Task {
 
