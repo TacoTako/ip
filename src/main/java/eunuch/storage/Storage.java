@@ -9,9 +9,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a data manager that reads and writes any data to the device
+ */
 public class Storage {
     private final File file;
 
+    /**
+     * Constructor for the storage
+     * @param fileDirPath directory and file path of the desired file to use as storage
+     */
     public Storage(String fileDirPath) {
         if (fileDirPath.isEmpty()) {
             fileDirPath = "data/eunuch_data.txt";
@@ -26,7 +33,10 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Reads the file path stored and converts the contents to a TaskList
+     * @return a task lsit with the data from the file loaded
+     */
     public TaskList loadListFromFile() {
         ArrayList<String> lines = new ArrayList<>();
         try {
@@ -42,6 +52,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes and saves a task list contents in string form to the file
+     * @param list list to be saved
+     * @throws IOException if data failed to be saved
+     */
     public void writeListToFile(TaskList list) throws IOException {
         FileWriter fw = new FileWriter(file.getPath());
         fw.write(list.toData());

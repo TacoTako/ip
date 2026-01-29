@@ -10,10 +10,17 @@ import java.util.ArrayList;
 public class TaskList {
     private final ArrayList<Task> list;
 
+    /**
+     * Initialized an empty task list
+     */
     public TaskList() {
         list = new ArrayList<>();
     }
 
+    /**
+     * Loads string data into a task list
+     * @param data array of task string representations
+     */
     public TaskList(ArrayList<String> data) {
         list = new ArrayList<>();
         loadListFromData(data);
@@ -82,6 +89,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Converts current list state into string data to be stored
+     * @return String representation of task list
+     */
     public String toData() {
         StringBuilder data = new StringBuilder();
         for (Task task : list) {

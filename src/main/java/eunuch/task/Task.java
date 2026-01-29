@@ -1,5 +1,8 @@
 package eunuch.task;
 
+/**
+ * Represents a single task with a description
+ */
 public abstract class Task {
     protected boolean isDone = false;
     protected final String taskDesc;

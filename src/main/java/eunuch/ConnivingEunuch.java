@@ -9,6 +9,9 @@ import eunuch.ui.Ui;
 
 import java.util.Scanner;
 
+/**
+ * Represents the chatbot that will manage user's tasks
+ */
 public class ConnivingEunuch {
     private static TaskList taskList = new TaskList();
     private static final Storage storage = new Storage("data/eunuch.txt");
