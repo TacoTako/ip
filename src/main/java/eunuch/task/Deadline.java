@@ -20,15 +20,13 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " +
-                DateParser.dateToString(by) + ")";
+        return "[D]" + super.toString() + " (by: "
+                + DateParser.dateToString(by) + ")";
     }
 
     @Override
     public String toData() {
-        return "D " + this.taskDesc + " " + isDone + " " +
-                DateParser.dateToParsableString(by);
+        return "D " + this.taskDesc + " " + isDone + " "
+                + DateParser.dateToParsableString(by);
     }
-
-
 }

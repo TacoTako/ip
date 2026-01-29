@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
     public void execute(TaskList taskList, Storage storage, Ui ui) {
         Task task = taskList.get(index);
         taskList.delete(index);
-        ui.displayText("Got it. I've deleted this task:\n" + task +
-                "\nThere are " + taskList.size() + " tasks in your list now.");
+        ui.displayText("Got it. I've deleted this task:\n" + task
+                + "\nThere are " + taskList.size() + " tasks in your list now.");
     }
 }

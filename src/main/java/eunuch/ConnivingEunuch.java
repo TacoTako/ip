@@ -27,7 +27,7 @@ public class ConnivingEunuch {
             String input = s.nextLine();
             Command command = Parser.parse(input);
 
-            try{
+            try {
                 command.execute(taskList, storage, ui);
             } catch (ConnivingException e) {
                 new PrintCommand(e.getMessage()).execute(taskList, storage, ui);

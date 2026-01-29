@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {
-        try{
+        try {
             storage.writeListToFile(taskList);
         } catch (IOException e) {
             ui.displayText("Error in saving list");

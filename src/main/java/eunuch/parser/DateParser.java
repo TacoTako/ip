@@ -1,6 +1,5 @@
 package eunuch.parser;
 
-
 import eunuch.ConnivingException;
 
 import java.time.LocalDate;
@@ -30,24 +29,21 @@ public class DateParser {
 
     public static Temporal parse(String input) throws ConnivingException {
         input = input.trim();
-
-
-            for (DateTimeFormatter formatter : DATE_TIME_FORMATTERS) {
-                try {
-                    return LocalDateTime.parse(input, formatter);
-                } catch (DateTimeParseException e) {
-                    //ignore
-                }
+        for (DateTimeFormatter formatter : DATE_TIME_FORMATTERS) {
+            try {
+                return LocalDateTime.parse(input, formatter);
+            } catch (DateTimeParseException e) {
+                //ignore
             }
+        }
 
-            for (DateTimeFormatter formatter : DATE_FORMATTERS) {
-                try {
-                    return LocalDate.parse(input, formatter);
-                } catch (DateTimeParseException e) {
-                    //ignore
-                }
+        for (DateTimeFormatter formatter : DATE_FORMATTERS) {
+            try {
+                return LocalDate.parse(input, formatter);
+            } catch (DateTimeParseException e) {
+                //ignore
             }
-
+        }
         throw new ConnivingException("Not a valid date/time: " + input);
     }
 

@@ -20,9 +20,9 @@ public class Storage {
         this.file = new File(fileDirPath);
 
         //create directories if needed
-        File parent_directory = file.getParentFile();
-        if (parent_directory != null) {
-            parent_directory.mkdirs();
+        File parentDirectory = file.getParentFile();
+        if (parentDirectory != null) {
+            parentDirectory.mkdirs();
         }
     }
 

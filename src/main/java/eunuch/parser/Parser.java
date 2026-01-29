@@ -1,13 +1,19 @@
 package eunuch.parser;
 
+import java.time.temporal.Temporal;
+
 import eunuch.ConnivingException;
-import eunuch.command.*;
+import eunuch.command.AddCommand;
+import eunuch.command.Command;
+import eunuch.command.DeleteCommand;
+import eunuch.command.ExitCommand;
+import eunuch.command.ListCommand;
+import eunuch.command.MarkCommand;
+import eunuch.command.PrintCommand;
 import eunuch.task.Deadline;
 import eunuch.task.Event;
 import eunuch.task.Task;
 import eunuch.task.Todo;
-
-import java.time.temporal.Temporal;
 
 public class Parser {
     public static Command parse(String input) {
@@ -88,7 +94,7 @@ public class Parser {
             throw new ConnivingException("Must have Task description after event keyword");
         }
 
-        try{
+        try {
             String[] eventParams = content.trim().split("\\s*/from\\s*|\\s*/to\\s*");
             Temporal fromTime = DateParser.parse(eventParams[1]);
             Temporal toTime = DateParser.parse(eventParams[2]);

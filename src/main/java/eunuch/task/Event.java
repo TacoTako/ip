@@ -23,15 +23,15 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() +  " (from: " +
-                DateParser.dateToString(fromTime) + " to: " +
-                        DateParser.dateToString(toTime) + ")";
+        return "[E]" + super.toString() + " (from: "
+                + DateParser.dateToString(fromTime) + " to: "
+                        + DateParser.dateToString(toTime) + ")";
     }
 
     @Override
     public String toData() {
-        return "E " + this.taskDesc + " " + isDone +
-                " " + DateParser.dateToParsableString(fromTime) + " " +
-                        DateParser.dateToParsableString(toTime);
+        return "E " + this.taskDesc + " " + isDone + " "
+                + DateParser.dateToParsableString(fromTime) + " "
+                        + DateParser.dateToParsableString(toTime);
     }
 }
