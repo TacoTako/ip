@@ -1,10 +1,10 @@
 package eunuch.command;
 
+import java.io.IOException;
+
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
 import eunuch.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command that will break the external while loop and exit the program

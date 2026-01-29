@@ -1,8 +1,8 @@
 package eunuch.task;
 
-import eunuch.ConnivingException;
-
 import java.util.ArrayList;
+
+import eunuch.ConnivingException;
 
 /**
  * This class represents a list of tasks to be used by the chatbot
@@ -54,7 +54,6 @@ public class TaskList {
      * Adds a task to the list from the back
      *
      * @param task Task to be added to the list
-     * @return Success message to be printed after adding Task
      */
     public void add(Task task) {
         this.list.add(task);

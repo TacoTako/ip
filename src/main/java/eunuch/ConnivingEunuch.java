@@ -1,13 +1,13 @@
 package eunuch;
 
+import java.util.Scanner;
+
 import eunuch.command.Command;
 import eunuch.command.PrintCommand;
 import eunuch.parser.Parser;
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
 import eunuch.ui.Ui;
-
-import java.util.Scanner;
 
 /**
  * Represents the chatbot that will manage user's tasks

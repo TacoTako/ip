@@ -1,8 +1,8 @@
 package eunuch.task;
 
-import eunuch.parser.DateParser;
-
 import java.time.temporal.Temporal;
+
+import eunuch.parser.DateParser;
 
 /**
  * Represents a task with a duration, a from time to an end time

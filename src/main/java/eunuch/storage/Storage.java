@@ -1,13 +1,13 @@
 package eunuch.storage;
 
-import eunuch.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import eunuch.task.TaskList;
 
 /**
  * Represents a data manager that reads and writes any data to the device
