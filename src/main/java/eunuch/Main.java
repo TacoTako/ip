@@ -22,10 +22,13 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+
+            stage.setMinHeight(220);
+            stage.setWidth(480);
+            stage.setMinWidth(480);
             stage.setScene(scene);
-            stage.setMinHeight(220);
-            stage.setMinHeight(220);
-            stage.setMinWidth(417);
+
+            stage.setTitle("Conniving Eunuch");
 
             fxmlLoader.<MainWindow>getController().setAgent(eunuch);
             stage.show();
