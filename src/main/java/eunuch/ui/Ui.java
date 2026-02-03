@@ -4,6 +4,11 @@ package eunuch.ui;
  * Represent the interface that will communicat the action of the code to the user
  */
 public class Ui {
+    private final MainWindow window;
+
+    public Ui(MainWindow window) {
+        this.window = window;
+    }
 
     /**
      * Prints a greeting to the user, called on startup
@@ -28,11 +33,11 @@ public class Ui {
      * @param s message to display
      */
     public void displayText(String s) {
-        System.out.println(formatOutput(s));
+        window.printEunuchMsg(formatOutput(s));
     }
 
     private static String formatOutput(String s) {
-        final String line = "____________________________________________________________";
+        final String line = "________________________________________________________";
         String output = line + "\n" + s + "\n" + line;
         return output.indent(4);
     }

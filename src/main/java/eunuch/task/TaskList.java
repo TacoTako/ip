@@ -2,7 +2,7 @@ package eunuch.task;
 
 import java.util.ArrayList;
 
-import eunuch.ConnivingException;
+import eunuch.exception.ConnivingException;
 
 /**
  * This class represents a list of tasks to be used by the chatbot

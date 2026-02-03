@@ -8,7 +8,7 @@ import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Locale;
 
-import eunuch.ConnivingException;
+import eunuch.exception.ConnivingException;
 
 /**
  * Represents a static class that can convert between Strings and LocalDate/LocalDateTime

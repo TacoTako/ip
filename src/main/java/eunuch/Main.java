@@ -2,6 +2,7 @@ package eunuch;
 
 import java.io.IOException;
 
+import eunuch.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Eunuch using FXML.
  */
 public class Main extends Application {
 
@@ -27,7 +28,10 @@ public class Main extends Application {
             stage.setMinWidth(417);
 
             fxmlLoader.<MainWindow>getController().setAgent(eunuch);
+            fxmlLoader.<MainWindow>getController().setStage(stage);
             stage.show();
+
+            eunuch.initialize();
         } catch (IOException e) {
             e.printStackTrace();
         }

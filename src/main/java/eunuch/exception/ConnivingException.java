@@ -1,4 +1,4 @@
-package eunuch;
+package eunuch.exception;
 
 /**
  * Represents an Exception related to the use of the Conniving Eunuch package
