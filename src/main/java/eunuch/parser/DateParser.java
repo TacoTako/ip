@@ -20,14 +20,19 @@ public class DateParser {
             DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"),
             DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm"),
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"),
-            DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm")
+            DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm"),
+            DateTimeFormatter.ofPattern("dd/MM/yy HHmm"),
+            DateTimeFormatter.ofPattern("dd-MM-yy HHmm")
     );
 
     private static final List<DateTimeFormatter> DATE_FORMATTERS = List.of(
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
             DateTimeFormatter.ofPattern("dd-MM-yyyy"),
             DateTimeFormatter.ofPattern("yyyy/MM/dd"),
-            DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+            DateTimeFormatter.ofPattern("dd/MM/yy"),
+            DateTimeFormatter.ofPattern("dd-MM-yy")
+
     );
 
     /**

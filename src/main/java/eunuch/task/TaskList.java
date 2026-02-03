@@ -129,7 +129,7 @@ public class TaskList {
 
     private void loadListFromData(ArrayList<String> lines) {
         for (String line : lines) {
-            String[] params = line.split(" ");
+            String[] params = line.split("Ð");
             boolean isMarkedDone = Boolean.parseBoolean(params[2]);
 
             Task taskToAdd;

@@ -28,7 +28,6 @@ public class Main extends Application {
             stage.setMinWidth(417);
 
             fxmlLoader.<MainWindow>getController().setAgent(eunuch);
-            fxmlLoader.<MainWindow>getController().setStage(stage);
             stage.show();
 
             eunuch.initialize();

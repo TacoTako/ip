@@ -2,6 +2,8 @@ package eunuch.ui;
 
 import eunuch.ConnivingEunuch;
 import eunuch.ui.element.DialogBox;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Controller for the main GUI.
@@ -25,7 +28,6 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private ConnivingEunuch eunuch;
-    private Stage stage;
 
     private final Image userImage = new Image(
             this.getClass().getResourceAsStream("/images/king.png"));
@@ -35,11 +37,6 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-    }
-
-    /** Injects Stage, to close application from within window*/
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 
     /** Injects the Duke instance */
@@ -65,7 +62,7 @@ public class MainWindow extends AnchorPane {
                 handleClose();
             } catch (InterruptedException e) {
                 // just close immediately
-                stage.close();
+                Platform.exit();
             }
         }
     }
@@ -95,7 +92,12 @@ public class MainWindow extends AnchorPane {
     /** Handles behaviours that needs to happen before program exits*/
     @FXML
     private void handleClose() throws InterruptedException {
-        wait(1000);
-        stage.close();
+        PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
+
+        pause.setOnFinished(e -> {
+            Platform.exit();
+        });
+
+        pause.play();
     }
 }

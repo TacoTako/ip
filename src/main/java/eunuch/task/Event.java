@@ -45,8 +45,8 @@ public class Event extends Task {
 
     @Override
     public String toData() {
-        return "E " + this.taskDesc + " " + isDone + " "
-                + DateParser.dateToParsableString(fromTime) + " "
+        return "EÐ" + this.taskDesc + "Ð" + isDone + "Ð"
+                + DateParser.dateToParsableString(fromTime) + "Ð"
                         + DateParser.dateToParsableString(toTime);
     }
 }
