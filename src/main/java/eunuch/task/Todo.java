@@ -16,6 +16,6 @@ public class Todo extends Task {
 
     @Override
     public String toData() {
-        return "T " + this.taskDesc + " " + isDone;
+        return "TÐ" + this.taskDesc + "Ð" + isDone;
     }
 }

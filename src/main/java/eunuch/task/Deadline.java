@@ -39,7 +39,7 @@ public class Deadline extends Task {
 
     @Override
     public String toData() {
-        return "D " + this.taskDesc + " " + isDone + " "
+        return "DÐ" + this.taskDesc + "Ð" + isDone + "Ð"
                 + DateParser.dateToParsableString(by);
     }
 }

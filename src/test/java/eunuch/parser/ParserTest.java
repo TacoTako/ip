@@ -7,6 +7,7 @@ import eunuch.command.Command;
 import eunuch.command.ExitCommand;
 import eunuch.command.PrintCommand;
 
+
 public class ParserTest {
     @Test
     public void parseEmptyTest() {

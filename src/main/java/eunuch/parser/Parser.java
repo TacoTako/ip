@@ -2,7 +2,7 @@ package eunuch.parser;
 
 import java.time.temporal.Temporal;
 
-import eunuch.ConnivingException;
+import eunuch.exception.ConnivingException;
 import eunuch.command.AddCommand;
 import eunuch.command.Command;
 import eunuch.command.DeleteCommand;

@@ -2,7 +2,7 @@ package eunuch.task;
 
 import java.util.ArrayList;
 
-import eunuch.ConnivingException;
+import eunuch.exception.ConnivingException;
 
 /**
  * This class represents a list of tasks to be used by the chatbot
@@ -129,7 +129,7 @@ public class TaskList {
 
     private void loadListFromData(ArrayList<String> lines) {
         for (String line : lines) {
-            String[] params = line.split(" ");
+            String[] params = line.split("Ð");
             boolean isMarkedDone = Boolean.parseBoolean(params[2]);
 
             Task taskToAdd;

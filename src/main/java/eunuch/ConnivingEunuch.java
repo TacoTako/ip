@@ -1,44 +1,51 @@
 package eunuch;
 
-import java.util.Scanner;
-
 import eunuch.command.Command;
 import eunuch.command.PrintCommand;
+import eunuch.exception.ConnivingException;
 import eunuch.parser.Parser;
 import eunuch.storage.Storage;
 import eunuch.task.TaskList;
+import eunuch.ui.MainWindow;
 import eunuch.ui.Ui;
 
 /**
- * Represents the chatbot that will manage user's tasks
+ * Represents the chatbot logic that will manage user's tasks
  */
 public class ConnivingEunuch {
-    private static TaskList taskList = new TaskList();
-    private static final Storage storage = new Storage("data/eunuch.txt");
-    private static final Ui ui = new Ui();
+    private TaskList taskList = new TaskList();
+    private final Storage storage = new Storage("data/eunuch.txt");
+    private Ui ui;
 
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        boolean endConversation = false;
+    /** Links main window to Ui class, so that it can print messages to it*/
+    public void connectUiWindow(MainWindow window) {
+        ui = new Ui(window);
+    }
 
-
+    /**
+     * Sets up the Eunuch on startup by loading data and greeting
+     */
+    public void initialize() {
         taskList = storage.loadListFromFile();
-        ui.greet();
+        if (ui != null) {
+            ui.greet();
+        }
+    }
 
-        //while loop for listening to users
-        while (!endConversation) {
-            String input = s.nextLine();
-            Command command = Parser.parse(input);
+    /**
+     * Handles internal logic using user input
+     * @param input test input user has typed
+     * @return true if the program is to exit, false otherwise
+     */
+    public boolean getResponse(String input) {
+        Command command = Parser.parse(input);
 
-            try {
-                command.execute(taskList, storage, ui);
-            } catch (ConnivingException e) {
-                new PrintCommand(e.getMessage()).execute(taskList, storage, ui);
-            }
-
-            endConversation = command.isExit();
+        try {
+            command.execute(taskList, storage, ui);
+        } catch (ConnivingException e) {
+            new PrintCommand(e.getMessage()).execute(taskList, storage, ui);
         }
 
-
+        return command.isExit();
     }
 }
