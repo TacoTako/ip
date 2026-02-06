@@ -2,7 +2,6 @@ package eunuch.parser;
 
 import java.time.temporal.Temporal;
 
-import eunuch.exception.ConnivingException;
 import eunuch.command.AddCommand;
 import eunuch.command.Command;
 import eunuch.command.DeleteCommand;
@@ -11,6 +10,7 @@ import eunuch.command.ListCommand;
 import eunuch.command.MarkCommand;
 import eunuch.command.PrintCommand;
 import eunuch.command.SearchCommand;
+import eunuch.exception.ConnivingException;
 import eunuch.task.Deadline;
 import eunuch.task.Event;
 import eunuch.task.Task;
@@ -26,9 +26,9 @@ public class Parser {
      * @return a Command that represents the user's input
      */
     public static Command parse(String input) {
-        String[] temp = input.trim().split(" ", 2);
-        String keyword = temp[0].toLowerCase();
-        String content = (temp.length > 1) ? temp[1] : "";
+        String[] parts = input.trim().split(" ", 2);
+        String keyword = parts[0].toLowerCase();
+        String content = (parts.length > 1) ? parts[1] : "";
 
         try {
             return switch (keyword) {

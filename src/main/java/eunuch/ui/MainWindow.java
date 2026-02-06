@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
+    /** Injects the Eunuch instance */
     public void setAgent(ConnivingEunuch e) {
         eunuch = e;
         eunuch.connectUiWindow(this);
@@ -53,7 +53,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         printUserMsg(input);
 
-        boolean isExit = eunuch.getResponse(input);
+        boolean isExit = eunuch.respond(input);
         userInput.clear();
 
         if (isExit) {

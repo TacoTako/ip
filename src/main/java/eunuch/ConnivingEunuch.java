@@ -37,7 +37,7 @@ public class ConnivingEunuch {
      * @param input test input user has typed
      * @return true if the program is to exit, false otherwise
      */
-    public boolean getResponse(String input) {
+    public boolean respond(String input) {
         Command command = Parser.parse(input);
 
         try {
