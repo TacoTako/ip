@@ -1,11 +1,12 @@
 package eunuch.command;
 
+import java.io.IOException;
+
 import eunuch.storage.Storage;
 import eunuch.task.Task;
 import eunuch.task.TaskList;
 import eunuch.ui.Ui;
 
-import java.io.IOException;
 
 /**
  * Represents a command that will add a task into the task list
@@ -32,7 +33,7 @@ public class AddCommand extends Command {
             ui.displayText("Error in saving list");
         }
 
-        ui.displayText("Got it. I've added this task:\n" + task
+        ui.displayText("Delightful. I've added this task:\n" + task
                 + "\nThere are " + taskList.size() + " tasks in your list now.");
     }
 }

@@ -33,6 +33,7 @@ public class Parser {
         try {
             return switch (keyword) {
             case "" -> new PrintCommand("I must have not caught that, Your Highness.");
+            case "help" -> parseHelp();
             case "bye" -> new ExitCommand();
             case "list" -> new ListCommand();
             case "mark" -> parseMark(content);
@@ -56,12 +57,19 @@ public class Parser {
         return new SearchCommand(content, null);
     }
 
+    private static Command parseHelp() {
+        String helpString = "At once, my lord. Please instruct me as such:\n-todo <desc>\n-deadline <desc> /by <date>"
+                + "\n-event <desc> /from <start> /to <end>\n-list\n-mark/unmark/delete <number>\n-find <keyword>\nbye"
+                + "\n Date-time can be read in format: dd/MM/YYYY HHmm with optional time and 2 digit year allowed";
+        return new PrintCommand(helpString);
+    }
+
     private static Command parseMark(String content) throws ConnivingException {
         try {
             int index = Integer.parseInt(content);
             return new MarkCommand(index, true);
         } catch (NumberFormatException e) {
-            throw new ConnivingException("Input a number after the \"mark\" keyword.");
+            throw new ConnivingException("Please input a number after the \"mark\" keyword.");
         }
     }
 
@@ -70,7 +78,7 @@ public class Parser {
             int index = Integer.parseInt(content);
             return new MarkCommand(index, false);
         } catch (NumberFormatException e) {
-            throw new ConnivingException("Input a number after the \"unmark\" keyword.");
+            throw new ConnivingException("Please input a number after the \"unmark\" keyword.");
         }
     }
 
@@ -79,13 +87,13 @@ public class Parser {
             int index = Integer.parseInt(content);
             return new DeleteCommand(index);
         } catch (NumberFormatException e) {
-            throw new ConnivingException("Input a number after the \"unmark\" keyword.");
+            throw new ConnivingException("Please input a number after the \"delete\" keyword.");
         }
     }
 
     private static Command parseTodo(String content) throws ConnivingException {
         if (content.isEmpty()) {
-            throw new ConnivingException("Must have Task description after todo keyword");
+            throw new ConnivingException("What is the task should I remind you of, Your Highness?");
         }
 
         return new AddCommand(new Todo(content));
@@ -93,7 +101,7 @@ public class Parser {
 
     private static Command parseDeadline(String content) throws ConnivingException {
         if (content.isEmpty()) {
-            throw new ConnivingException("Must have Task description after deadline keyword");
+            throw new ConnivingException("What is the task should I remind you of, Your Highness?");
         }
         try {
             String[] deadlineParams = content.trim().split("\\s*/by\\s*");
@@ -102,13 +110,13 @@ public class Parser {
 
             return new AddCommand(deadline);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ConnivingException("Incorrect syntax");
+            throw new ConnivingException("I am sorry, this commoner must not understand your terms.");
         }
     }
 
     private static Command parseEvent(String content) throws ConnivingException {
         if (content.isEmpty()) {
-            throw new ConnivingException("Must have Task description after event keyword");
+            throw new ConnivingException("What is the task should I remind you of, Your Highness?");
         }
 
         try {
@@ -119,7 +127,7 @@ public class Parser {
             Task event = new Event(eventParams[0], fromTime, toTime);
             return new AddCommand(event);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ConnivingException("Incorrect syntax");
+            throw new ConnivingException("I am sorry, this commoner must not understand your terms.");
         }
     }
 }

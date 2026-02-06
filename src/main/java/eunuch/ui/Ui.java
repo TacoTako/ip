@@ -33,7 +33,7 @@ public class Ui {
      * @param s message to display
      */
     public void displayText(String s) {
-        window.printEunuchMsg(formatOutput(s));
+        window.printEunuchMsg(s);
     }
 
     private static String formatOutput(String s) {
