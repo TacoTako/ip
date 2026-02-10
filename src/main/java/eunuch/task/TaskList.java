@@ -8,6 +8,9 @@ import eunuch.exception.ConnivingException;
  * This class represents a list of tasks to be used by the chatbot
  */
 public class TaskList {
+    private static final String NO_TASK_MESSAGE = "There are no tasks in your list.";
+    private static final String NO_SUCH_TASK_MESSAGE = "No such tasks exist in your list.";
+
     private final ArrayList<Task> list;
 
     /**
@@ -30,7 +33,7 @@ public class TaskList {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         if (list.isEmpty()) {
-            return "There are no tasks in your list";
+            return NO_TASK_MESSAGE;
         }
 
         for (int i = 0; i < list.size(); i++) {
@@ -70,7 +73,7 @@ public class TaskList {
         try {
             return this.list.get(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new ConnivingException("Item does not exist in list!");
+            throw new ConnivingException(NO_SUCH_TASK_MESSAGE);
         }
     }
 
@@ -82,7 +85,7 @@ public class TaskList {
     public String filterList(String toFind) {
         StringBuilder sb = new StringBuilder();
         if (list.isEmpty()) {
-            return "There are no tasks in your list";
+            return NO_TASK_MESSAGE;
         }
 
         for (int i = 0; i < list.size(); i++) {
@@ -93,7 +96,7 @@ public class TaskList {
         }
 
         if (sb.isEmpty()) {
-            return "There are no matching tasks in your list";
+            return NO_SUCH_TASK_MESSAGE;
         }
 
         //remove trailing newline
@@ -111,7 +114,7 @@ public class TaskList {
         try {
             this.list.remove(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new ConnivingException("Item does not exist in list!");
+            throw new ConnivingException(NO_SUCH_TASK_MESSAGE);
         }
     }
 

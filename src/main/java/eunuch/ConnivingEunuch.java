@@ -25,7 +25,7 @@ public class ConnivingEunuch {
     /**
      * Sets up the Eunuch on startup by loading data and greeting
      */
-    public void initialize() {
+    public void initializeAttributes() {
         taskList = storage.loadListFromFile();
         assert ui != null;
         ui.greet();
@@ -36,7 +36,7 @@ public class ConnivingEunuch {
      * @param input test input user has typed
      * @return true if the program is to exit, false otherwise
      */
-    public boolean respond(String input) {
+    public boolean respondToInput(String input) {
         Command command = Parser.parse(input);
 
         assert command != null;
