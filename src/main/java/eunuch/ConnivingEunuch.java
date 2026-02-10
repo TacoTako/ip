@@ -27,9 +27,8 @@ public class ConnivingEunuch {
      */
     public void initializeAttributes() {
         taskList = storage.loadListFromFile();
-        if (ui != null) {
-            ui.greet();
-        }
+        assert ui != null;
+        ui.greet();
     }
 
     /**
@@ -39,6 +38,8 @@ public class ConnivingEunuch {
      */
     public boolean respondToInput(String input) {
         Command command = Parser.parse(input);
+
+        assert command != null;
 
         try {
             command.execute(taskList, storage, ui);
