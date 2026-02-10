@@ -8,7 +8,7 @@ import eunuch.ui.Ui;
  * Represents a command that will perform code when called
  */
 public abstract class Command {
-    private boolean isExit;
+    private final boolean isExit;
 
     public Command(boolean isExit) {
         this.isExit = isExit;

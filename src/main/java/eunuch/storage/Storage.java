@@ -20,6 +20,8 @@ public class Storage {
      * @param fileDirPath directory and file path of the desired file to use as storage
      */
     public Storage(String fileDirPath) {
+        assert fileDirPath != null;
+
         if (fileDirPath.isEmpty()) {
             fileDirPath = "data/eunuch_data.txt";
         }
@@ -38,6 +40,8 @@ public class Storage {
      * @return a task lsit with the data from the file loaded
      */
     public TaskList loadListFromFile() {
+        assert this.file != null;
+
         ArrayList<String> lines = new ArrayList<>();
         try {
             Scanner s = new Scanner(this.file);
@@ -58,6 +62,8 @@ public class Storage {
      * @throws IOException if data failed to be saved
      */
     public void writeListToFile(TaskList list) throws IOException {
+        assert this.file != null;
+
         FileWriter fw = new FileWriter(file.getPath());
         fw.write(list.toData());
         fw.close();
