@@ -33,6 +33,7 @@ public class Ui {
      * @param s message to display
      */
     public void displayText(String s) {
+        assert window != null;
         window.printEunuchMsg(s);
     }
 
