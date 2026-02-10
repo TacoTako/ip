@@ -54,7 +54,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         printUserMsg(input);
 
-        boolean isExit = eunuch.respond(input);
+        boolean isExit = eunuch.respondToInput(input);
         userInput.clear();
 
         if (isExit) {

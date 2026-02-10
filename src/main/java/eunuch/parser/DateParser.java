@@ -47,7 +47,7 @@ public class DateParser {
             try {
                 return LocalDateTime.parse(input, formatter);
             } catch (DateTimeParseException e) {
-                //ignore
+                //ignore since exception is thrown below
             }
         }
 
@@ -55,7 +55,7 @@ public class DateParser {
             try {
                 return LocalDate.parse(input, formatter);
             } catch (DateTimeParseException e) {
-                //ignore
+                //ignore since exception is thrown below
             }
         }
         throw new ConnivingException("Not a valid date/time: " + input);
