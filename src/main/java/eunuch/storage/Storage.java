@@ -27,6 +27,7 @@ public class Storage {
         }
 
         this.file = new File(fileDirPath);
+        ensureDirectoryExists();
     }
 
     /**

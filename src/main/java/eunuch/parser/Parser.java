@@ -10,6 +10,7 @@ import eunuch.command.ListCommand;
 import eunuch.command.MarkCommand;
 import eunuch.command.PrintCommand;
 import eunuch.command.SearchCommand;
+import eunuch.command.SortCommand;
 import eunuch.exception.ConnivingException;
 import eunuch.task.Deadline;
 import eunuch.task.Event;
@@ -43,11 +44,17 @@ public class Parser {
             case "event" -> parseEvent(content);
             case "delete" -> parseDelete(content);
             case "find" -> parseFind(content);
+            case "sort" -> parseSort(true);
+            case "showsorted" -> parseSort(false);
             default -> new PrintCommand("Your foolish servant does not understand.");
             };
         } catch (ConnivingException e) {
             return new PrintCommand(e.getMessage());
         }
+    }
+
+    private static Command parseSort(boolean isPersistent) {
+        return new SortCommand(isPersistent);
     }
 
     private static Command parseFind(String content) {
@@ -59,7 +66,8 @@ public class Parser {
 
     private static Command parseHelp() {
         String helpString = "At once, my lord. Please instruct me as such:\n-todo <desc>\n-deadline <desc> /by <date>"
-                + "\n-event <desc> /from <start> /to <end>\n-list\n-mark/unmark/delete <number>\n-find <keyword>\nbye"
+                + "\n-event <desc> /from <start> /to <end>\n-list\n-mark/unmark/delete <number>\n-find <keyword>\n"
+                + "-sort\n-showsorted\n-bye"
                 + "\n Date-time can be read in format: dd/MM/YYYY HHmm with optional time and 2 digit year allowed";
         return new PrintCommand(helpString);
     }

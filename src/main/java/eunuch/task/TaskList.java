@@ -1,6 +1,7 @@
 package eunuch.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import eunuch.exception.ConnivingException;
 
@@ -27,6 +28,15 @@ public class TaskList {
     public TaskList(ArrayList<String> data) {
         list = new ArrayList<>();
         loadListFromData(data);
+    }
+
+    /**
+     * Initializes task list with an arraylist of tasks
+     * @param tasks array of tasks
+     * @param dummy dummy variable to prevent clashing with other constructor after erasure
+     */
+    private TaskList(ArrayList<Task> tasks, int dummy) {
+        list = tasks;
     }
 
     @Override
@@ -116,6 +126,17 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new ConnivingException(NO_SUCH_TASK_MESSAGE);
         }
+    }
+
+    public TaskList getSorted() {
+        List<Task> sortedList = list.stream()
+                .sorted()
+                .toList();
+        return new TaskList(new ArrayList<Task>(sortedList), 0);
+    }
+
+    public void sortSelf() {
+        list.sort(null);;
     }
 
     /**

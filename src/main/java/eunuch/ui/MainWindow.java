@@ -33,6 +33,9 @@ public class MainWindow extends AnchorPane {
     private final Image dukeImage = new Image(
             this.getClass().getResourceAsStream("/images/eunuch.png"));
 
+    /**
+     * Initializes the window properties
+     */
     @FXML
     public void initialize() {
         userInput.setPromptText("Type here...");

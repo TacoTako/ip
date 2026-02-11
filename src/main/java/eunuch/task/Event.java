@@ -1,6 +1,5 @@
 package eunuch.task;
 
-import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 
 import eunuch.parser.DateParser;
@@ -58,7 +57,7 @@ public class Event extends Task {
      */
     @Override
     public int compareTo(Task task) {
-        int taskCompareVal  = super.compareTo(task);
+        int taskCompareVal = super.compareTo(task);
 
         if (taskCompareVal != 0) {
             return taskCompareVal;

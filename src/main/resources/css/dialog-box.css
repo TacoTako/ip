@@ -4,6 +4,7 @@
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
+    -fx-text-fill: derive(yellow, 0.5)
 }
 
 .reply-label {
