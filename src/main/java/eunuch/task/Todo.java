@@ -18,4 +18,15 @@ public class Todo extends Task {
     public String toData() {
         return "TÐ" + this.taskDesc + "Ð" + isDone;
     }
+
+    @Override
+    public int compareTo(Task task) {
+        int taskCompareVal = super.compareTo(task);
+
+        if (taskCompareVal != 0) {
+            return taskCompareVal;
+        }
+
+        return this.taskDesc.compareTo(task.taskDesc);
+    }
 }

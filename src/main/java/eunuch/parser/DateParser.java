@@ -93,4 +93,19 @@ public class DateParser {
 
         return "";
     }
+
+    /**
+     * Converts a temporal holding either LocalDate or LocalDateTime to a LocalDateTime
+     * @param t valid date/datetime
+     * @return either the datetime or the start of the day for a date
+     */
+    public static LocalDateTime toDateTime(Temporal t) {
+        if (t instanceof LocalDate date) {
+            return date.atStartOfDay();
+        }
+        if (t instanceof LocalDateTime dateTime) {
+            return dateTime;
+        }
+        throw new IllegalArgumentException("Unsupported temporal type");
+    }
 }

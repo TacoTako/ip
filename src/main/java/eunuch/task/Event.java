@@ -1,5 +1,6 @@
 package eunuch.task;
 
+import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 
 import eunuch.parser.DateParser;
@@ -48,5 +49,36 @@ public class Event extends Task {
         return "EÐ" + this.taskDesc + "Ð" + isDone + "Ð"
                 + DateParser.dateToParsableString(fromTime) + "Ð"
                         + DateParser.dateToParsableString(toTime);
+    }
+
+    /**
+     * Compares task with task first, then by start time, then by end time,
+     * then by description
+     * @param task the object to be compared.
+     */
+    @Override
+    public int compareTo(Task task) {
+        int taskCompareVal  = super.compareTo(task);
+
+        if (taskCompareVal != 0) {
+            return taskCompareVal;
+        }
+
+        //task is an Event of same marked-ness
+        Event event = (Event) task;
+
+        int startCompare = DateParser.toDateTime(this.fromTime).compareTo(
+                DateParser.toDateTime(event.fromTime));
+        if (startCompare != 0) {
+            return startCompare;
+        }
+
+        int endCompare = DateParser.toDateTime(this.toTime).compareTo(
+                DateParser.toDateTime(event.toTime));
+        if (endCompare != 0) {
+            return endCompare;
+        }
+
+        return this.taskDesc.compareTo(task.taskDesc);
     }
 }

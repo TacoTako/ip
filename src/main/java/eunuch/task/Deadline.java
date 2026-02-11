@@ -1,5 +1,6 @@
 package eunuch.task;
 
+import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 
 import eunuch.parser.DateParser;
@@ -41,5 +42,28 @@ public class Deadline extends Task {
     public String toData() {
         return "DÐ" + this.taskDesc + "Ð" + isDone + "Ð"
                 + DateParser.dateToParsableString(byTime);
+    }
+
+    /**
+     * Compares task with task first, then by deadline, then by description
+     * @param task the object to be compared.
+     */
+    @Override
+    public int compareTo(Task task) {
+        int taskCompareVal  = super.compareTo(task);
+
+        if (taskCompareVal != 0) {
+            return taskCompareVal;
+        }
+
+        //task is a Deadline of same marked-ness
+        Deadline deadline = (Deadline) task;
+        LocalDateTime myDateTime = DateParser.toDateTime(this.byTime);
+        LocalDateTime otherDateTime = DateParser.toDateTime(deadline.byTime);
+        int dateCompare = myDateTime.compareTo(otherDateTime);
+        if (dateCompare != 0) {
+            return dateCompare;
+        }
+        return this.taskDesc.compareTo(task.taskDesc);
     }
 }
