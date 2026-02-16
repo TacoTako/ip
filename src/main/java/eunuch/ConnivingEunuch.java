@@ -11,8 +11,6 @@ import eunuch.task.TaskList;
 import eunuch.ui.MainWindow;
 import eunuch.ui.Ui;
 
-import java.util.Scanner;
-
 /**
  * Represents the chatbot logic that will manage user's tasks
  */
