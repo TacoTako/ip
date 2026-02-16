@@ -33,7 +33,7 @@ public class Parser {
 
         try {
             return switch (keyword) {
-            case "" -> new PrintCommand("I must have not caught that, Your Highness.");
+            case "" -> new PrintCommand("I must have not caught that, Your Highness.", true);
             case "help" -> parseHelp();
             case "bye" -> new ExitCommand();
             case "list" -> new ListCommand();
@@ -46,10 +46,10 @@ public class Parser {
             case "find" -> parseFind(content);
             case "sort" -> parseSort(true);
             case "showsorted" -> parseSort(false);
-            default -> new PrintCommand("Your foolish servant does not understand.");
+            default -> new PrintCommand("Your foolish servant does not understand.", true);
             };
         } catch (ConnivingException e) {
-            return new PrintCommand(e.getMessage());
+            return new PrintCommand(e.getMessage(), true);
         }
     }
 
@@ -69,7 +69,7 @@ public class Parser {
                 + "\n-event <desc> /from <start> /to <end>\n-list\n-mark/unmark/delete <number>\n-find <keyword>\n"
                 + "-sort\n-showsorted\n-bye"
                 + "\n Date-time can be read in format: dd/MM/YYYY HHmm with optional time and 2 digit year allowed";
-        return new PrintCommand(helpString);
+        return new PrintCommand(helpString, false);
     }
 
     private static Command parseMark(String content) throws ConnivingException {

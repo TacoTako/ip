@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -36,7 +37,15 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+        initialiseImageView(img);
+    }
+
+    private void initialiseImageView(Image img) {
         displayPicture.setImage(img);
+        Rectangle clip = new Rectangle(displayPicture.getFitWidth(), displayPicture.getFitHeight());
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        displayPicture.setClip(clip);
     }
 
     /**
@@ -50,13 +59,23 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    private void applyErrorColor() {
+        dialog.getStyleClass().add("error-label");
+    }
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getEunuchDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        return db;
+    }
+
+    public static DialogBox getEunuchError(String text, Image img) {
+        var db = getEunuchDialog(text, img);
+        db.applyErrorColor();
         return db;
     }
 }

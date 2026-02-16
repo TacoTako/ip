@@ -12,6 +12,7 @@ import eunuch.exception.ConnivingException;
 
 /**
  * Represents a static class that can convert between Strings and LocalDate/LocalDateTime
+ * AI coded class by chatgpt
  */
 public class DateParser {
 
