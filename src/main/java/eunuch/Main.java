@@ -6,6 +6,7 @@ import eunuch.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -32,6 +33,8 @@ public class Main extends Application {
             stage.setWidth(MIN_SCREEN_WIDTH);
             stage.setMinWidth(MIN_SCREEN_WIDTH);
             stage.setTitle(WINDOW_NAME);
+            Image icon = new Image(getClass().getResourceAsStream("/images/eunuch.png"));
+            stage.getIcons().add(icon);
 
             fxmlLoader.<MainWindow>getController().setAgent(eunuch);
 
