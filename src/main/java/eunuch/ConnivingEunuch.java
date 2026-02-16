@@ -44,7 +44,7 @@ public class ConnivingEunuch {
         try {
             command.execute(taskList, storage, ui);
         } catch (ConnivingException e) {
-            new PrintCommand(e.getMessage()).execute(taskList, storage, ui);
+            new PrintCommand(e.getMessage(), true).execute(taskList, storage, ui);
         }
 
         return command.isExit();

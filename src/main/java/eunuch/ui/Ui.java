@@ -30,11 +30,20 @@ public class Ui {
 
     /**
      * Prints the message to the user after formatting it
-     * @param s message to display
+     * @param msg message to display
      */
-    public void displayText(String s) {
+    public void displayText(String msg) {
         assert window != null;
-        window.printEunuchMsg(s);
+        window.printEunuchMsg(msg);
+    }
+
+    /**
+     * Prints the message to the user as an error dialog box after formatting it
+     * @param msg error to display
+     */
+    public void displayError(String msg) {
+        assert window != null;
+        window.printEunuchError(msg);
     }
 
     private static String formatOutput(String s) {

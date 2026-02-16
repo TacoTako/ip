@@ -9,18 +9,24 @@ import eunuch.ui.Ui;
  */
 public class PrintCommand extends Command {
     private final String msg;
+    private final boolean isError;
 
     /**
      * Constructs a print command
      * @param msg message to be displayed
      */
-    public PrintCommand(String msg) {
+    public PrintCommand(String msg, boolean isError) {
         super(false);
         this.msg = msg;
+        this.isError = isError;
     }
 
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.displayText(msg);
+        if (isError) {
+            ui.displayError(msg);
+        } else {
+            ui.displayText(msg);
+        }
     }
 }

@@ -4,12 +4,19 @@
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
-    -fx-text-fill: derive(yellow, 0.5)
+    -fx-font-family: "Verdana";
+    -fx-text-fill: derive(yellow, 0.75)
 }
 
 .reply-label {
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+}
+
+.error-label {
+    -fx-background-color: linear-gradient(to bottom right, #ee6146, #d73c37);
+    -fx-text-fill: red;
+    -fx-background-color: #333333;
 }
 
 #displayPicture {

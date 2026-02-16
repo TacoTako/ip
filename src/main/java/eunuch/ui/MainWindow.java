@@ -30,7 +30,7 @@ public class MainWindow extends AnchorPane {
 
     private final Image userImage = new Image(
             this.getClass().getResourceAsStream("/images/king.png"));
-    private final Image dukeImage = new Image(
+    private final Image eunuchImage = new Image(
             this.getClass().getResourceAsStream("/images/eunuch.png"));
 
     /**
@@ -49,7 +49,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Eunuch's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
@@ -77,7 +77,18 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void printEunuchMsg(String msg) {
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(msg, dukeImage)
+                DialogBox.getEunuchDialog(msg, eunuchImage)
+        );
+    }
+
+    /**
+     * Shows a dialog box from the Eunuch
+     * @param msg string to be displayed
+     */
+    @FXML
+    public void printEunuchError(String msg) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getEunuchError(msg, eunuchImage)
         );
     }
 
