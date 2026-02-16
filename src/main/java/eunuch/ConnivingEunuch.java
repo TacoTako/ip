@@ -1,5 +1,7 @@
 package eunuch;
 
+import java.util.Scanner;
+
 import eunuch.command.Command;
 import eunuch.command.PrintCommand;
 import eunuch.exception.ConnivingException;

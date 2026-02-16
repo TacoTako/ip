@@ -14,7 +14,7 @@ public class TaskListTest {
     @Test
     public void emptyTaskListStringTest() {
         TaskList list = new TaskList();
-        assertEquals("", list.toString());
+        assertEquals("There are no tasks in your list.", list.toString());
     }
 
     @Test

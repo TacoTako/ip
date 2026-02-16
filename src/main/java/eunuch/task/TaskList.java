@@ -15,7 +15,7 @@ public class TaskList {
     private final ArrayList<Task> list;
 
     /**
-     * Initialized an empty task list
+     * Initializes an empty task list
      */
     public TaskList() {
         list = new ArrayList<>();
