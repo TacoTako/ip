@@ -33,8 +33,11 @@ public class Ui {
      * @param msg message to display
      */
     public void displayText(String msg) {
-        assert window != null;
-        window.printEunuchMsg(msg);
+        if (window != null) {
+            window.printEunuchMsg(msg);
+        } else {
+            System.out.println(formatOutput(msg));
+        }
     }
 
     /**
@@ -42,8 +45,11 @@ public class Ui {
      * @param msg error to display
      */
     public void displayError(String msg) {
-        assert window != null;
-        window.printEunuchError(msg);
+        if (window != null) {
+            window.printEunuchError(msg);
+        } else {
+            System.out.println(formatOutput(msg));
+        }
     }
 
     private static String formatOutput(String s) {

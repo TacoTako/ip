@@ -24,7 +24,6 @@ public class SortCommand extends Command {
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {
         if (!isPersistent) {
-            ui.displayText("calling");
             TaskList sortedList = taskList.getSorted();
             ui.displayText("Immediately. Here are your sorted tasks:\n" + sortedList);
             return;
